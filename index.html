@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101117">
+  <meta name="description" content="Explore colorful spirograph patterns. Adjust the gears, discover new curves, and download your design.">
+  <title>Orbit — Spirograph Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Orbit Spirograph Studio home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>ORBIT<span class="brand-light"> / STUDIO</span></span>
+      </a>
+      <span class="top-note"><span class="live-dot" aria-hidden="true"></span> INTERACTIVE GENERATIVE ART</span>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">A LITTLE MATHEMATICS, A LOT OF COLOR</p>
+      <h1 id="page-title">Make a pattern<br><span>all your own.</span></h1>
+      <p class="intro-copy">Imagine a pen tracing the path of one gear rolling inside another. Adjust the circles and pen position to uncover a new orbit.</p>
+    </section>
+
+    <section class="studio" aria-label="Spirograph drawing studio">
+      <div class="art-panel">
+        <div class="art-heading">
+          <div>
+            <p class="eyebrow">YOUR CANVAS</p>
+            <p class="art-caption">A hypotrochoid, drawn by your settings</p>
+          </div>
+          <span class="canvas-badge">LIVE DRAWING</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="board" width="900" height="900" aria-label="Colorful spirograph pattern generated from the current gear settings">
+            Your browser does not support canvas. Try a current version of a major browser.
+          </canvas>
+        </div>
+        <div class="art-footer">
+          <span>GEAR RATIO <strong id="ratioValue">14 : 5</strong></span>
+          <span id="curveInfo">CLOSED CURVE</span>
+        </div>
+      </div>
+
+      <aside class="control-panel" aria-labelledby="controls-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">THE MECHANICS</p>
+            <h2 id="controls-title">Tune your gears</h2>
+          </div>
+          <span class="settings-icon" aria-hidden="true">⌘</span>
+        </div>
+        <p class="panel-copy">Small changes can make a completely different design. Drag a slider or try a preset.</p>
+
+        <label class="preset-label" for="presetSelect">START WITH A PRESET</label>
+        <select id="presetSelect">
+          <option value="petal">Petal garden</option>
+          <option value="star">Shooting star</option>
+          <option value="lace">Fine lace</option>
+          <option value="orbit">Double orbit</option>
+          <option value="custom">Custom settings</option>
+        </select>
+
+        <div class="sliders" id="controls">
+          <div class="slider-heading">
+            <label for="RRange"><span class="param-symbol">R</span><span class="param-name">Fixed gear radius</span></label>
+            <output id="RValue" for="RRange">70</output>
+          </div>
+          <input type="range" min="20" max="100" value="70" id="RRange" aria-describedby="RHelp">
+          <p class="slider-help" id="RHelp">The size of the outer, stationary gear.</p>
+
+          <div class="slider-heading">
+            <label for="rRange"><span class="param-symbol">r</span><span class="param-name">Rolling gear radius</span></label>
+            <output id="rValue" for="rRange">25</output>
+          </div>
+          <input type="range" min="1" max="69" value="25" id="rRange" aria-describedby="rHelp">
+          <p class="slider-help" id="rHelp">Keep this smaller than the fixed gear.</p>
+
+          <div class="slider-heading">
+            <label for="dRange"><span class="param-symbol">d</span><span class="param-name">Pen distance</span></label>
+            <output id="dValue" for="dRange">35</output>
+          </div>
+          <input type="range" min="0" max="100" value="35" id="dRange" aria-describedby="dHelp">
+          <p class="slider-help" id="dHelp">How far the pen sits from the rolling gear’s center.</p>
+        </div>
+
+        <div class="button-row">
+          <button class="button button-secondary" id="resetButton" type="button">Reset</button>
+          <button class="button button-primary" id="savePNGbutton" type="button"><span aria-hidden="true">↓</span> Download PNG</button>
+        </div>
+        <button class="share-button" id="shareButton" type="button"><span aria-hidden="true">↗</span> Copy a link to this design</button>
+        <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+      </aside>
+    </section>
+
+    <footer class="page-footer">
+      <span>Made for curious minds.</span>
+      <span>Tip: use Tab and the arrow keys to adjust the sliders.</span>
+    </footer>
+  </main>
+</body>
+</html>
