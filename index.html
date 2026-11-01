@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101117">
+  <meta name="theme-color" content="#fffaf0">
   <meta name="description" content="Explore colorful spirograph patterns. Adjust the gears, discover new curves, and download your design.">
   <title>Orbit — Spirograph Studio</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   <script src="sketch.js?v=2" defer></script>
 </head>
 <body>
@@ -94,6 +94,53 @@
         <button class="share-button" id="shareButton" type="button"><span aria-hidden="true">↗</span> Copy a link to this design</button>
         <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
       </aside>
+    </section>
+
+    <section class="math-section" aria-labelledby="math-title">
+      <div class="learn-heading">
+        <p class="eyebrow">A PEEK BEHIND THE PATTERN</p>
+        <h2 id="math-title">The math that makes it move</h2>
+        <p>Orbit uses a little geometry and a few lines of code to turn rolling gears into colorful curves.</p>
+      </div>
+
+      <div class="learn-grid">
+        <article class="learn-card formula-card" aria-labelledby="formula-title">
+          <div class="learn-card-heading">
+            <span class="learn-number">01</span>
+            <h3 id="formula-title">The curve formula</h3>
+          </div>
+          <p>For a small circle rolling inside a larger one, the pen follows a hypotrochoid:</p>
+          <div class="equation-box" role="group" aria-label="Hypotrochoid equations">
+            <math display="block" aria-label="x of t equals R minus r times cosine t plus d times cosine of R minus r over r times t">
+              <mrow><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>R</mi><mo>−</mo><mi>r</mi><mo>)</mo><mi>cos</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>+</mo><mi>d</mi><mi>cos</mi><mo>(</mo><mfrac><mrow><mi>R</mi><mo>−</mo><mi>r</mi></mrow><mi>r</mi></mfrac><mi>t</mi><mo>)</mo></mrow>
+            </math>
+            <math display="block" aria-label="y of t equals R minus r times sine t minus d times sine of R minus r over r times t">
+              <mrow><mi>y</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>R</mi><mo>−</mo><mi>r</mi><mo>)</mo><mi>sin</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>−</mo><mi>d</mi><mi>sin</mi><mo>(</mo><mfrac><mrow><mi>R</mi><mo>−</mo><mi>r</mi></mrow><mi>r</mi></mfrac><mi>t</mi><mo>)</mo></mrow>
+            </math>
+          </div>
+          <dl class="symbol-list">
+            <div><dt>R</dt><dd>radius of the fixed outer gear</dd></div>
+            <div><dt>r</dt><dd>radius of the rolling inner gear</dd></div>
+            <div><dt>d</dt><dd>pen distance from the inner gear’s center</dd></div>
+            <div><dt>t</dt><dd>the gear’s angle as it rolls</dd></div>
+          </dl>
+          <p class="math-note">The curve closes after <strong>r ÷ gcd(R, r)</strong> full turns of the outer angle. That’s why some gear ratios make repeating petals and others create denser designs.</p>
+        </article>
+
+        <article class="learn-card build-card" aria-labelledby="build-title">
+          <div class="learn-card-heading">
+            <span class="learn-number">02</span>
+            <h3 id="build-title">How the app is built</h3>
+          </div>
+          <ol class="build-steps">
+            <li><span>Choose</span><p>The sliders set <em>R</em>, <em>r</em>, and <em>d</em>; presets load a few combinations to try.</p></li>
+            <li><span>Calculate</span><p>JavaScript uses the greatest common divisor to find the reduced gear ratio and when the curve will close.</p></li>
+            <li><span>Draw</span><p>The code plugs many small angle steps into the equations, then connects the calculated points on an HTML canvas.</p></li>
+            <li><span>Share</span><p>Save the canvas as a PNG or copy a link with the gear settings in its URL.</p></li>
+          </ol>
+          <p class="build-tech">Built with <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong> — all running right in your browser.</p>
+        </article>
+      </div>
     </section>
 
     <footer class="page-footer">
