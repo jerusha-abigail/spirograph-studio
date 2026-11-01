@@ -66,7 +66,7 @@ function drawCurve(R, r, d, turns) {
   const height = canvas.height;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = '#0b0c11';
+  ctx.fillStyle = '#fffdf8';
   ctx.fillRect(0, 0, width, height);
   ctx.save();
   ctx.translate(width / 2, height / 2);
